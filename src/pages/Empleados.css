@@ -1,0 +1,225 @@
+/* ==========================================================================
+   1. ESTILOS BASE / VISTA MÓVIL (Por defecto para pantallas chicas)
+   ========================================================================== */
+
+.empleados-seccion {
+  font-family: system-ui, -apple-system, sans-serif;
+  max-width: 1200px;
+  margin: 10px auto;
+  padding: 0 15px;
+}
+
+.empleados-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.empleados-header h2 {
+  margin: 0;
+  color: #1e293b !important;
+  font-size: 1.4rem;
+}
+
+.registros-badge {
+  background-color: #f1f5f9;
+  color: #475569;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+/* El contenedor en móvil no necesita scroll, se adapta verticalmente */
+.table-container {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Transformación de la tabla a formato de bloques (Cards) */
+.empleados-table {
+  width: 100%;
+  display: block; /* Volvemos la tabla un contenedor de bloque */
+  background-color: #ffffff;
+}
+
+/* Escondemos el encabezado tradicional en pantallas móviles */
+.empleados-table thead {
+  display: none;
+}
+
+.empleados-table tbody {
+  display: block;
+  width: 100%;
+}
+
+/* Cada fila se convierte en una tarjeta independiente */
+.empleados-table tbody tr {
+  display: block;
+  width: 100%;
+  border-bottom: 8px solid #cbd5e1; /* Separador grueso entre empleados */
+  padding: 12px 16px;
+  box-sizing: border-box;
+}
+
+.empleados-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* Cada celda se comporta como una línea horizontal */
+.empleados-table td {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed #e2e8f0; /* Línea interna sutil */
+  color: #0f172a !important;
+  font-size: 0.95rem;
+  text-align: right;
+}
+
+.empleados-table td:last-child {
+  border-bottom: none;
+}
+
+/* Inyectamos dinámicamente el nombre de la columna a la izquierda */
+.empleados-table td::before {
+  content: attr(data-label);
+  font-weight: 600;
+  color: #64748b;
+  text-align: left;
+  padding-right: 15px;
+}
+
+/* Ajustes específicos de elementos dentro de la celda */
+.estado-texto {
+  background-color: #dcfce7;
+  color: #15803d;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.acciones-celda {
+  justify-content: flex-end !important; /* Alinea los botones al final */
+  gap: 8px;
+}
+
+/* BOTONES RESPONSIVOS */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-editar {
+  background-color: #e0f2fe;
+  color: #0369a1 !important;
+}
+
+.btn-eliminar {
+  background-color: #fee2e2;
+  color: #b91c1c !important;
+}
+
+
+/* ==========================================================================
+   2. VISTA PARA PANTALLAS GRANDES (Tablets y Computadoras)
+   ========================================================================== */
+@media (min-width: 768px) {
+  .empleados-seccion {
+    margin: 20px auto;
+    padding: 0 20px;
+  }
+
+  .empleados-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .table-container {
+    border: 1px solid #cbd5e1;
+    overflow-x: auto; /* Si la pantalla es mediana, permite scroll en vez de romperse */
+  }
+
+  /* Restauramos el comportamiento de tabla nativa */
+  .empleados-table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .empleados-table thead {
+    display: table-header-group; /* Volvemos a mostrar los títulos arriba */
+  }
+
+  .empleados-table tbody {
+    display: table-row-group;
+  }
+
+  .empleados-table tr {
+    display: table-row !important;
+    border-bottom: none !important;
+  }
+
+  /* Volvemos a la estructura de celdas cuadradas normales */
+  .empleados-table th,
+  .empleados-table td {
+    display: table-cell !important;
+    padding: 14px 16px;
+    text-align: left;
+  }
+
+  .empleados-table td {
+    border-bottom: 1px solid #e2e8f0;
+    border-right: 1px solid #f1f5f9;
+  }
+
+  .empleados-table td:last-child {
+    border-right: none;
+  }
+
+  /* Quitamos las etiquetas dinámicas generadas en mobile */
+  .empleados-table td::before {
+    display: none;
+  }
+
+  /* Encabezados de tabla estables */
+  .empleados-table th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    border-bottom: 2px solid #cbd5e1;
+  }
+
+  .empleados-table th:first-child { border-top-left-radius: 11px; }
+  .empleados-table th:last-child { border-top-right-radius: 11px; }
+
+  /* Filas de colores intercalados (Cebra) */
+  .empleados-table tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+  
+  .empleados-table tbody tr:hover {
+    background-color: #f1f5f9;
+  }
+
+  .empleados-table tbody tr:last-child td:first-child { border-bottom-left-radius: 11px; }
+  .empleados-table tbody tr:last-child td:last-child { border-bottom-right-radius: 11px; }
+
+  .text-center {
+    text-align: center !important;
+  }
+  
+  .btn {
+    padding: 6px 14px;
+    margin: 0 4px;
+  }
+}

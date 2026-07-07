@@ -1,4 +1,4 @@
-import { useState } from 'react' // Falta este import esencial
+import { useState } from 'react' 
 import './App.css'
 import data from './data/empleados'
 import Empleados from "./pages/Empleados";
@@ -15,9 +15,9 @@ function App() {
     setEmpleados(filtrados)
   }
 
-  function editarEmpleado(id, empleadoEditado) {
+  function editarEmpleado(empleadoEditado) {
     const actualizados = empleados.map((emp) => {
-      if (emp.id === id) {
+      if (emp.id === empleadoEditado.id) {
         return empleadoEditado
       } else {
         return emp
@@ -26,7 +26,6 @@ function App() {
     setEmpleados(actualizados)
   }
 
-  // Corregimos el return para que pinte tu componente con sus props
   return (
     <div className="container">
       <h1>Panel de Control</h1>
