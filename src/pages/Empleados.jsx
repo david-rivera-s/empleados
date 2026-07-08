@@ -1,6 +1,14 @@
+import { useNavigate } from "react-router-dom"
 import "./Empleados.css"
 
 function Empleados({empleados, onEliminar, onEditar}) {
+
+    const navigate = useNavigate()
+
+    function manejarEditar(emp){
+        navigate("/editar", {state: {empleado : emp} })
+    }
+
     return(
         <div className="empleados-seccion">
             <div className="empleados-header">
@@ -26,23 +34,29 @@ function Empleados({empleados, onEliminar, onEditar}) {
                         {empleados.map((emp) => {
                             return (
                                 <tr key={emp.id}>
+                                    
                                     <td data-label="Nombre">{emp.nombre}</td>
                                     <td data-label="Edad">{emp.edad}</td>
                                     <td data-label="Departamento">{emp.departamento}</td>
                                     <td data-label="Turno">{emp.turno}</td>
                                     <td data-label="Ingreso">{emp.fechaIngreso}</td>
                                     <td data-label="Salario">{emp.salario}</td>
+                                    
                                     <td data-label="Estado">
-                                        <span className="estado-texto">{emp.activo}</span>
+                                        <span className={`estado-badge ${emp.activo ? 'activo' : 'inactivo'}`}>
+                                            {emp.activo ? "Activo" : "Inactivo"}
+                                        </span>
                                     </td>
+
                                     <td data-label="Acciones" className="text-center acciones-celda">
-                                        <button className="btn btn-editar" onClick={() => onEditar(emp)}>
+                                        <button className="btn btn-editar" onClick={() => manejarEditar(emp)}>
                                             Editar
                                         </button>
                                         <button className="btn btn-eliminar" onClick={() => onEliminar(emp.id)}>
                                             Eliminar
                                         </button>
                                     </td>
+
                                 </tr>
                             )
                         })}
