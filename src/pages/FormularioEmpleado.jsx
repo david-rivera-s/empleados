@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
 
-function FormularioEmpleado({onGuardar, empleadoAEditar, onCancelar}) {
+function FormularioEmpleado({onGuardar}) {
+
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const empleadoRecuperado = location.state?.empleado || null 
+
     const [nombre, setNombre] = useState("")
     const [edad, setEdad] = useState("")
     const [departamento, setDepartamento] = useState("tecnologia") // Inicializado con la opción por defecto
@@ -10,14 +17,14 @@ function FormularioEmpleado({onGuardar, empleadoAEditar, onCancelar}) {
     const [salario, setSalario] = useState("")
 
     useEffect(() => {
-        if (empleadoAEditar !== null && empleadoAEditar !== undefined) {
-            setNombre(empleadoAEditar.nombre)
-            setEdad(empleadoAEditar.edad)
-            setDepartamento(empleadoAEditar.departamento || "tecnologia")
-            setTurno(empleadoAEditar.turno || "Mañana")
-            setActivo(empleadoAEditar.activo)
-            setFechaIngreso(empleadoAEditar.fechaIngreso)
-            setSalario(empleadoAEditar.salario)
+        if (empleadoRecuperado) {
+            setNombre(empleadoRecuperado.nombre)
+            setEdad(empleadoRecuperado.edad)
+            setDepartamento(empleadoRecuperado.departamento || "tecnologia")
+            setTurno(empleadoRecuperado.turno || "Mañana")
+            setActivo(empleadoRecuperado.activo)
+            setFechaIngreso(empleadoRecuperado.fechaIngreso)
+            setSalario(empleadoRecuperado.salario)
         } else {
             setNombre("")
             setEdad("")
@@ -27,13 +34,13 @@ function FormularioEmpleado({onGuardar, empleadoAEditar, onCancelar}) {
             setFechaIngreso("")
             setSalario("")
         }
-    }, [empleadoAEditar])
+    }, [empleadoRecuperado])
 
     function manejarGuardar(e) {
         e.preventDefault(); // Evita recarga si se usa dentro de un form
         
         const empleado = {
-            id: empleadoAEditar !== null && empleadoAEditar !== undefined ? empleadoAEditar.id : Date.now(),
+            id: empleadoRecuperado !== null && empleadoRecuperado !== undefined ? empleadoRecuperado.id : Date.now(),
             nombre: nombre,
             edad: Number(edad),
             departamento: departamento,
@@ -44,6 +51,11 @@ function FormularioEmpleado({onGuardar, empleadoAEditar, onCancelar}) {
         }
 
         onGuardar(empleado)
+        navigate("/")
+    }
+
+    function manejarCancelar(){
+        navigate("/")
     }
     
     return (
@@ -92,7 +104,7 @@ function FormularioEmpleado({onGuardar, empleadoAEditar, onCancelar}) {
 
             {/* Al ser type="submit", ejecutará automáticamente el onSubmit del <form> */}
             <button type="submit">Guardar</button>
-            <button type="button" onClick={onCancelar}>Cancelar</button>
+            <button type="button" onClick={manejarCancelar}>Cancelar</button>
         </form>
     )
 }
