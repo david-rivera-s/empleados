@@ -1,0 +1,135 @@
+/* Contenedor principal del formulario */
+.formulario-empleado {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: sans-serif;
+  color: #333333;
+}
+
+/* Configuración general de etiquetas de texto */
+.formulario-empleado label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Estilos comunes para todos los inputs y selects */
+.formulario-empleado input[type="text"],
+.formulario-empleado input[type="number"],
+.formulario-empleado input[type="date"],
+.formulario-empleado select {
+  padding: 10px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 15px;
+  background-color: #fafafa;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.formulario-empleado input:focus,
+.formulario-empleado select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  background-color: #ffffff;
+}
+
+/* Sección de Turnos (Alineación horizontal de radios) */
+.turno-container {
+  font-weight: 600;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.turno-container label {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 15px;
+  margin-top: 6px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.turno-container input[type="radio"] {
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+/* Sección de Estado (Checkbox) */
+.estado-container {
+  display: inline-flex;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px !important;
+  cursor: pointer;
+}
+
+.estado-container input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Contenedor de Botones de acción */
+.botones-container {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.botones-container button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Botón Guardar (Azul para hacer juego con 'Nuevo Empleado') */
+.botones-container button[type="submit"] {
+  background-color: #3498db;
+  color: white;
+}
+
+.botones-container button[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+/* Botón Cancelar */
+.botones-container button[type="button"] {
+  background-color: #e0e0e0;
+  color: #333333;
+}
+
+.botones-container button[type="button"]:hover {
+  background-color: #d5d5d5;
+}
+
+/* Asegura que el texto plano (como "Turno:") sea visible */
+.formulario-empleado {
+  color: #1e293b !important; /* Fuerza un gris oscuro legible */
+}
+
+/* Fuerza el color del texto de todos los inputs y selectores */
+.formulario-empleado input,
+.formulario-empleado select {
+  color: #0f172a !important; /* Evita que el texto de los inputs salga blanco o invisible */
+}
+
+/* Estilo para las etiquetas específicas */
+.formulario-empleado label {
+  color: #475569; /* Gris Slate intermedio muy moderno */
+}
