@@ -38,7 +38,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <div className="container">
+      <div className="container main-content">
         <Routes>
           <Route 
             path="/" 
