@@ -5,6 +5,7 @@ import data from './data/empleados'
 import Empleados from "./pages/Empleados"
 import FormularioEmpleado from './pages/FormularioEmpleado'
 import Navbar from './components/Navbar'
+import NoEncontrada from './pages/NoEncontrada'
 
 function App() {
   const [empleados, setEmpleados] = useState(data)
@@ -55,6 +56,14 @@ function App() {
           <Route 
             path="/editar" 
             element={<FormularioEmpleado onGuardar={manejarGuardar} />} 
+          />
+          <Route
+            path='*'
+            element={
+              <NoEncontrada
+                
+              />
+            }
           />
         </Routes>
       </div>
