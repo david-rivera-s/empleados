@@ -26,7 +26,7 @@ function Empleados({empleados, onEliminar, onEditar}) {
                             <th>Turno</th>
                             <th>Ingreso</th>
                             <th>Salario</th>
-                            <th>Estado</th>
+                            <th className="text-center">ESTADO</th>
                             <th className="text-center">Acciones</th>
                         </tr>
                     </thead>
@@ -42,8 +42,10 @@ function Empleados({empleados, onEliminar, onEditar}) {
                                     <td data-label="Ingreso">{emp.fechaIngreso}</td>
                                     <td data-label="Salario">{emp.salario}</td>
                                     
-                                    <td data-label="Estado">
-                                        <span className={`estado-badge ${emp.activo ? 'activo' : 'inactivo'}`}>
+                                    <td data-label="Estado" className="text-center">
+                                        <span 
+                                            className={`estado-badge ${emp.activo ? 'activo' : 'inactivo'}`}
+                                        >
                                             {emp.activo ? "Activo" : "Inactivo"}
                                         </span>
                                     </td>

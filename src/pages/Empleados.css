@@ -94,19 +94,26 @@
   padding-right: 15px;
 }
 
-/* Ajustes específicos de elementos dentro de la celda */
-.estado-texto {
-  background-color: #dcfce7;
-  color: #15803d;
-  padding: 4px 10px;
-  border-radius: 6px;
+/* Ajustes específicos para los badges de estado (Activo / Inactivo) */
+.estado-badge {
+  padding: 6px 16px;
+  border-radius: 50px; /* Bordes completamente ovalados como en la imagen */
   font-size: 0.85rem;
   font-weight: 600;
+  display: inline-block;
+  text-align: center;
 }
 
-.acciones-celda {
-  justify-content: flex-end !important; /* Alinea los botones al final */
-  gap: 8px;
+/* Variación cuando está Activo (Verde) */
+.estado-badge.activo {
+  background-color: #dcfce7; /* Verde suave de fondo */
+  color: #14532d;            /* Verde oscuro para el texto */
+}
+
+/* Variación cuando está Inactivo (Rojo) */
+.estado-badge.inactivo {
+  background-color: #fee2e2; /* Rojo suave de fondo */
+  color: #7f1d1d;            /* Rojo oscuro para el texto */
 }
 
 /* BOTONES RESPONSIVOS */
